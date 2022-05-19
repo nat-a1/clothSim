@@ -4,8 +4,8 @@
 #include <GL/freeglut.h>
 
 using namespace std;
-/* c'est peut-être mieux d'utiliser des structs pour les aabb,
-*  mais je ne sais pas comment gérer les structs entre .h / .c
+/* c'est peut-ï¿½tre mieux d'utiliser des structs pour les aabb,
+*  mais je ne sais pas comment gï¿½rer les structs entre .h / .c
 *  donc, a voir pour plus tard.
 */
 
@@ -30,7 +30,7 @@ Aabb::Aabb(Triangle* tt) {
 	 isLeaf = true;
 };
 
-// ça sert à rien, à enlever, c'est rien que pour l'exemple de la sphere qui entre en contact avec le tissu
+// ï¿½a sert ï¿½ rien, ï¿½ enlever, c'est rien que pour l'exemple de la sphere qui entre en contact avec le tissu
 Aabb::Aabb(vec3 center) {
 	c = center;
 }
@@ -88,6 +88,7 @@ Aabb::Aabb(vec3 center) {
 	 }
 	 return false;
  }
+ 
  bool Aabb::overlapBox(Aabb* a) {
 	 if (overlapPoint(a->p1))  return true;
 	 if (overlapPoint(a->p1 + vec3(a->l,0,0)))  return true;
@@ -104,8 +105,8 @@ Aabb::Aabb(vec3 center) {
  
  // draw box
 void Aabb::draw() {
-	// attention cette fonction <doit> etre entourée de glbegin et glend,
-	// je ne le mets pas à l'interieur de cette fonction car trop couteux --> plutot le mettre au début et fin d'une fonction qui
+	// attention cette fonction <doit> etre entourï¿½e de glbegin et glend,
+	// je ne le mets pas ï¿½ l'interieur de cette fonction car trop couteux --> plutot le mettre au dï¿½but et fin d'une fonction qui
 	// affiche toutes les boites
 	glVertex3f(p1.x, p1.y, p1.z);
 	glVertex3f(p1.x + l, p1.y, p1.z);
@@ -159,7 +160,7 @@ Node::Node(Node* c1, Node* c2) {
 
 void Node::update() {
 	// si c'est une feuille,reformer la aabb a partir des point du triangle, (box.updatebox)
-	// sinon, aabb est formé par les plus petites et plus grandes coordonnées des enfants. (box.unir) 
+	// sinon, aabb est formï¿½ par les plus petites et plus grandes coordonnï¿½es des enfants. (box.unir) 
 	if (isLeaf) {
 		box.updateBox(); 
 		return;
@@ -208,7 +209,7 @@ void Tree::creerParents(int i1, int j1, int w, int h, int d) {
 }
 
 void Tree::drawNodes(Node* n, int d) {
-	// fonction à mettre dans drawBVH
+	// fonction ï¿½ mettre dans drawBVH
 	if (d == 0) { n->box.draw(); return; }
 
 	drawNodes(n->child1, d - 1);
@@ -258,7 +259,7 @@ void Tree::calculeAngles() {
 
 void Tree::checkCollision(Node *a,Node *b){
 	if(!a->box.overlapBox(&b->box) && !b->box.overlapBox(&a->box) ){
-		// si pas de collision, s'arrêter
+		// si pas de collision, s'arrï¿½ter
 		return	;
 	}
 
@@ -367,7 +368,7 @@ void Tree::interpolation(Triangle *t1, Triangle *t2) {
  
 					float d = DEFAULT_H - dot(myp->position - bary.x * t1->a_p1->position - bary.y * t1->a_p2->position - bary.z * t1->a_p3->position, t1->normal);
 					
-					// j'ajoute la répuslion ( => moins de collisions )
+					// j'ajoute la rï¿½puslion ( => moins de collisions )
 					if (I > 0.1 *d / DT) {
 
 					}
@@ -415,7 +416,7 @@ void Tree::interpolation(Triangle *t1, Triangle *t2) {
 
 					float d = DEFAULT_H - dot(myp->position - bary.x * t2->a_p1->position - bary.y * t2->a_p2->position - bary.z * t2->a_p3->position, t2->normal);
 
-					// j'ajoute la répuslion ( => moins de collisions )
+					// j'ajoute la rï¿½puslion ( => moins de collisions )
 					if (I > 0.1 * d / DT) {
 
 					}

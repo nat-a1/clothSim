@@ -39,12 +39,10 @@
 *x64/
 *Debug/
 *Include/
-*Release
 .vs
 *.sln
 
 *.glsl
 *.ob
 *.vcxproj*
-
-
+*debog*
